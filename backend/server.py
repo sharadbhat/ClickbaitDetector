@@ -3,14 +3,15 @@ import json
 
 app = Flask(__name__)
 
-@app.route("/", methods=["POST"])
+# @app.route("/", methods=["POST"])
+@app.route("/")
 def main_page():
     response = app.response_class(
         response=json.dumps("Hello"),
         status=200,
         mimetype="application/json"
     )
-    data = request.get_json()
+    # data = request.get_json()
     # print(data["headlines"])
     # run_model(data["headlines"])
     return response

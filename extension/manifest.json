@@ -26,6 +26,8 @@
         "matches": ["*://*/*"],
         "js": ["clickbait.js"]
       }
-    ]
+    ],
+
+    "permissions": ["*://*/*"]
   
   }

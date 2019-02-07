@@ -1,0 +1,31 @@
+{
+    "manifest_version": 2,
+    "name": "Clickbait Detector",
+    "version": "0.0.1",
+  
+    "author": "Sharad Bhat",
+
+    "description": "Calculates probability of an article headline being clickbait.",
+  
+    "homepage_url": "https://github.com/sharadbhat/ClickbaitDetector",  
+
+    "browser_action": {
+      "default_icon": {
+        "200": "icons/clickbait-200.png"
+      },
+      "default_title": "Clickbait Detector",
+      "default_popup": "popup/popup.html"
+    },
+
+    "icons": {
+      "200": "icons/clickbait-200.png"
+    },
+  
+    "content_scripts": [
+      {
+        "matches": ["*://*/*"],
+        "js": ["clickbait.js"]
+      }
+    ]
+  
+  }

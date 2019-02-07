@@ -1,8 +1,8 @@
 import requests
 from bs4 import BeautifulSoup as soup
 
-def get_news_from_keywords(keywords):
-  url = "https://news.google.com/rss/search?q=" + "+".join(keywords)
+def get_news_from_keywords(headlines):
+  url = "https://news.google.com/rss/search?q=" + "+".join(headlines.split())
   data = requests.get(url).content
 
   parsed = soup(data, "lxml")

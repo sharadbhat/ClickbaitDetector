@@ -23,11 +23,11 @@
   
     "content_scripts": [
       {
-        "matches": ["*://*/*"],
+        "matches": ["<all_urls>"],
         "js": ["clickbait.js"]
       }
     ],
 
-    "permissions": ["*://*/*"]
+    "permissions": ["activeTab"]
   
   }

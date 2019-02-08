@@ -1,1 +1,1 @@
-# ClickbaitDetector
+# Clickbait Detector

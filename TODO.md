@@ -10,8 +10,8 @@
 ## Extension
 
 - Request necessary permissions from user.
-- Gather HTML content from page.
-- Send content to server API.
+- Gather page URL.
+- Send URL to server API.
 - Display returned data.
 
 # Done

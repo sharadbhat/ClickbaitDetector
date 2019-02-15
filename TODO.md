@@ -3,10 +3,8 @@
 ## Server
 
 - Submit headlines and content to model.
-
 - Create model.
 - Connect model to server.
-
 - Return percentage.
 
 ## Extension

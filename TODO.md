@@ -2,8 +2,6 @@
 
 ## Server
 
-- Handle incoming request from extension.
-- Clean up HTML content to get headlines and content. (Python Readability)
 - Submit headlines and content to model.
 
 - Create model.
@@ -23,7 +21,8 @@
 ## Server
 
 - API skeleton.
-- Dummy request handler.
+- Handle incoming request from extension.
+- Clean up HTML content to get headlines and content. (Python Readability)
 - Gathering similar news from Google News.
 
 ## Extension

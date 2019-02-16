@@ -1,10 +1,10 @@
-function onGot(tabInfo) {
-  console.log(tabInfo);
-}
-
-function onError(error) {
-  console.log(`Error: ${error}`);
-}
-
-var gettingCurrent = browser.tabs.getCurrent();
-gettingCurrent.then(onGot, onError);
+fetch("http://localhost:5000/", {
+  method: "post",
+  headers: {
+    Accept: "application/json, text/plain, */*",
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({ url: "http://facebook.com" })
+})
+  .then(res => res.json())
+  .then(res => console.log(res));

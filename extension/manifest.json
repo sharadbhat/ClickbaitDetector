@@ -31,6 +31,6 @@
       "scripts": ["clickbait.js"]
     },
 
-    "permissions": ["activeTab", "tabs", "webRequest"]
+    "permissions": ["activeTab", "tabs", "webRequest", "http://localhost/*"]
   
   }

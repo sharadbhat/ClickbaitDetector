@@ -11,7 +11,6 @@
 
 - Request necessary permissions from user.
 - Gather page URL.
-- Send URL to server API.
 - Display returned data.
 
 # Done
@@ -27,3 +26,4 @@
 ## Extension
 
 - Basic structure.
+- Connected to server API.

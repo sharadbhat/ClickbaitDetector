@@ -4,7 +4,7 @@ import tqdm
 import nltk
 import re
 
-MATCH_MULTIPLE_SPACES = re.compile("\ {2,}")
+MATCH_MULTIPLE_SPACES = re.compile(r"\ {2,}")
 VOCABULARY_SIZE = 6500
 UNK = "<UNK>" # Placeholder for unknown words
 PAD = "<PAD>"

@@ -3,7 +3,7 @@
 ## Server
 
 - Submit headlines and content to model.
-- Create model.
+- Train model.
 - Connect model to server.
 - Return percentage.
 
@@ -18,6 +18,8 @@
 ## Server
 
 - API skeleton.
+- Created model.
+- Preprocessed training data.
 - Handle incoming request from extension.
 - Clean up HTML content to get headlines and content. (Python Readability)
 - Gathering similar news from Google News.

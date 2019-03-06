@@ -21,7 +21,7 @@ def clean(text):
 def remove_unknown(vocabulary, sentence):
     return " ".join(word if word in vocabulary else UNK for word in sentence.split(" "))
 
-def preprocess_text(genuine, clickbait, vocabulary):
+def preprocess_text(genuine, clickbait):
     genuine = clean(genuine)
     clickbait = clean(clickbait)
 
@@ -40,5 +40,5 @@ if __name__ == "__main__":
     clickbait = open("data/clickbait.txt").read()
     vocabulary, genuine_preprocessed, clickbait_preprocessed = preprocess_text(genuine, clickbait)
     open("data/vocabulary.txt", "w").write("\n".join(vocabulary))
-    open("data/genuine.preprocessed.txt", "w").write("\n".join(genuine))
-    open("data/clickbait.preprocessed.txt", "w").write("\n".join(clickbait))
+    open("data/genuine.preprocessed.txt", "w").write(genuine_preprocessed)
+    open("data/clickbait.preprocessed.txt", "w").write(clickbait_preprocessed)

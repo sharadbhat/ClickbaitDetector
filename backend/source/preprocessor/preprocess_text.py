@@ -10,6 +10,12 @@ UNK = "<UNK>" # Placeholder for unknown words
 PAD = "<PAD>"
 
 def clean(text):
+    """
+    To clean text data:
+        - Add space around punctuations.
+        - Add space around numbers.
+        - Reduce multiple spaces to one space.
+    """
     text = str(text.lower())
     for punctuation in string.punctuation:
         text = text.replace(punctuation, " " + punctuation + " ")
@@ -19,9 +25,15 @@ def clean(text):
     return "\n".join(line.strip() for line in text.split("\n"))
 
 def remove_unknown(vocabulary, sentence):
+    """
+    To replace unknown words with <UNK>
+    """
     return " ".join(word if word in vocabulary else UNK for word in sentence.split(" "))
 
 def preprocess_text(genuine, clickbait):
+    """
+    To preprocess genuine and clickbait text.
+    """
     genuine = clean(genuine)
     clickbait = clean(clickbait)
 

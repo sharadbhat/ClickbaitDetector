@@ -4,15 +4,18 @@ from keras.preprocessing import sequence
 from keras.optimizers import RMSprop, Adam, SGD
 from keras.regularizers import l2
 
+
 def ConvolutionalNet(vocabulary_size, embedding_dimension, input_length, embedding_weights=None):
     """
     The CNN architecture.
     """
     model = Sequential()
     if embedding_weights is None:
-        model.add(Embedding(vocabulary_size, embedding_dimension, input_length=input_length, trainable=False))
+        model.add(Embedding(vocabulary_size, embedding_dimension,
+                            input_length=input_length, trainable=False))
     else:
-        model.add(Embedding(vocabulary_size, embedding_dimension, input_length=input_length, weights=[embedding_weights], trainable=False))
+        model.add(Embedding(vocabulary_size, embedding_dimension,
+                            input_length=input_length, weights=[embedding_weights], trainable=False))
 
     model.add(Convolution1D(32, 2, kernel_regularizer=l2(0.005)))
     model.add(BatchNormalization())

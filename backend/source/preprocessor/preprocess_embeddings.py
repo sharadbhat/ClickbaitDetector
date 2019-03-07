@@ -3,6 +3,9 @@ from sklearn.decomposition import PCA
 
 
 def preprocess_embeddings(embedding_dimension, vocabulary):
+    """
+    Reads GloVe file and returns weights for each word in vocabulary.
+    """
     embeddings = {}
     with open("models/glove.6B.50d.txt", encoding="utf8") as glove_file:
         for line in glove_file:
@@ -22,6 +25,9 @@ def preprocess_embeddings(embedding_dimension, vocabulary):
 
 
 if __name__ == "__main__":
+    """
+    Preprocesses the GloVe embeddings.
+    """
     EMBEDDING_DIMENSION = 30
     vocabulary = open("data/vocabulary.txt").read().split("\n")
     weights = preprocess_embeddings(EMBEDDING_DIMENSION, vocabulary)

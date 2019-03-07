@@ -1,6 +1,5 @@
 import string
 from collections import Counter
-import tqdm
 import nltk
 import re
 
@@ -42,8 +41,8 @@ def preprocess_text(genuine, clickbait):
     counts = Counter(word for word in words if word in glove_vocabulary)
 
     vocabulary = [PAD, UNK] + [word for word, count in counts.most_common(VOCABULARY_SIZE-2)]
-    genuine = [remove_unknown(vocabulary, sentence)  for sentence in tqdm.tqdm(genuine.split("\n"), desc="genuine")]
-    clickbait = [remove_unknown(vocabulary, sentence) for sentence in tqdm.tqdm(clickbait.split("\n"), desc="clickbait")]
+    genuine = [remove_unknown(vocabulary, sentence)  for sentence in genuine.split("\n")]
+    clickbait = [remove_unknown(vocabulary, sentence) for sentence in clickbait.split("\n")]
 
     return (vocabulary, "\n".join(genuine), "\n".join(clickbait))
 

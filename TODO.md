@@ -3,7 +3,6 @@
 ## Server
 
 - Submit headlines and content to model.
-- Train model.
 - Connect model to server.
 - Return percentage.
 
@@ -21,6 +20,8 @@
 - Created model.
 - Preprocessed training data.
 - Preprocessed embeddings using GloVe.
+- Trained model.
+- Saved trained weights.
 - Handle incoming request from extension.
 - Clean up HTML content to get headlines and content. (Python Readability)
 - Gathering similar news from Google News.

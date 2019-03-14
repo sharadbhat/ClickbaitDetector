@@ -5,7 +5,7 @@ from model.cnn import ConvolutionalNet
 from keras.preprocessing import sequence
 from keras.optimizers import RMSprop, Adam, SGD
 from keras.callbacks import EarlyStopping
-from sklearn.cross_validation import train_test_split
+from sklearn.model_selection import train_test_split
 
 
 SEQUENCE_LENGTH = 20
@@ -47,5 +47,5 @@ if __name__ == "__main__":
     model.compile(loss="binary_crossentropy",
                   optimizer="adam", metrics=["acc"])
     model.fit(X_train, y_train, validation_data=(X_test, y_test), batch_size=32,
-              nb_epoch=20, shuffle=True, callbacks=[EarlyStopping(monitor="val_loss", patience=2)])
+              nb_epoch=20, shuffle=True)#, callbacks=[EarlyStopping(monitor="val_loss", patience=2)])
 model.save_weights(MODEL_FILE)

@@ -17,11 +17,11 @@
     "content_scripts": [
       {
         "matches": ["<all_urls>"],
-        "js":["cb_content.js"]
+        "js":["script_files/cb_content.js"]
       }
     ],
     "background": {
-      "scripts": ["cb_background.js"],
+      "scripts": ["script_files/cb_background.js"]
     },
     "permissions": ["activeTab", "tabs", "webRequest", "http://localhost/*"]
   }

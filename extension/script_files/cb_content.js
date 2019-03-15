@@ -1,1 +1,1 @@
-console.log("Content Script working")
+console.log("Content Script Loaded")

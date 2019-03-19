@@ -21,7 +21,7 @@ function wordSelected(nodeReference)
       			link : passedLink
       		};
       		console.log(message.link )
-      		//chrome.runtime.sendMessage(message)
+      		chrome.runtime.sendMessage(message)
       	}
 
       };

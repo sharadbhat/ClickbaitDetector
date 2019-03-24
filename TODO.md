@@ -31,3 +31,5 @@
 
 - Basic structure.
 - Connected to server API.
+- Content Script Connection.
+- Background Script Connection.

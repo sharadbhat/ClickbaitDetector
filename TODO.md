@@ -38,5 +38,3 @@
 - Request handling between content-script and backgoround-script.
 - Using Chrome API to handle request between pop-up and background-script. 
 - Gathered hovered over URl.
-
-

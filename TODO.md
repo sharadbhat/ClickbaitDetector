@@ -11,6 +11,8 @@
 - Request necessary permissions from user.
 - Gather page URL.
 - Display returned data.
+- Create hover over delay/Clickbait menu option.
+- Using pop-up to display site data.
 
 # Done
 
@@ -33,3 +35,8 @@
 - Connected to server API.
 - Content Script Connection.
 - Background Script Connection.
+- Request handling between content-script and backgoround-script.
+- Using Chrome API to handle request between pop-up and background-script. 
+- Gathered hovered over URl.
+
+

@@ -6,13 +6,16 @@
     "description": "Calculates probability of an article headline being clickbait.",
     "browser_action": {
       "default_icon": {
-        "200": "icons/clickbait-200.png"
+        "64": "icons/clickbait_64.png"
       },
       "default_title": "Clickbait Detector",
       "default_popup": "popup/popup.html"
     },
     "icons": {
-      "200": "icons/clickbait-200.png"
+      "64": "icons/clickbait_64.png",
+      "32": "icons/clickbait_32.png",
+      "24": "icons/clickbait_24.png",
+      "16": "icons/clickbait_16.png"
     },
     "content_scripts": [
       {
@@ -23,5 +26,11 @@
     "background": {
       "scripts": ["script_files/cb_background.js"]
     },
-    "permissions": ["activeTab", "tabs", "webRequest", "http://localhost/*"]
+    "permissions": [
+      "activeTab", 
+      "tabs", 
+      "webRequest", 
+      "http://localhost/*",
+      "contextMenus"
+    ]
   }

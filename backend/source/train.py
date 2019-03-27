@@ -10,7 +10,7 @@ from sklearn.model_selection import train_test_split
 
 SEQUENCE_LENGTH = 20
 EMBEDDING_DIMENSION = 30
-MODEL_FILE = "models/detector.h5"
+WEIGHTS_SAVE_FILE = "models/weights.h5"
 
 
 def words_to_indices(inverse_vocabulary, words):
@@ -48,4 +48,4 @@ if __name__ == "__main__":
                   optimizer="adam", metrics=["acc"])
     model.fit(X_train, y_train, validation_data=(X_test, y_test), batch_size=32,
               nb_epoch=20, shuffle=True)#, callbacks=[EarlyStopping(monitor="val_loss", patience=2)])
-model.save_weights(MODEL_FILE)
+model.save_weights(WEIGHTS_SAVE_FILE)

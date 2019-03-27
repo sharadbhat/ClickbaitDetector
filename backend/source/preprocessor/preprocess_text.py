@@ -49,6 +49,8 @@ def preprocess_text(genuine, clickbait):
 if __name__ == "__main__":
     genuine = open("data/genuine.txt").read()
     clickbait = open("data/clickbait.txt").read()
+    # genuineCC = open("data/CC_Dataset/train/genuine_cc.txt", encoding="utf8").read()
+    # clickbaitCC = open("data/CC_Dataset/train/clickbait_cc.txt", encoding="utf8").read()
     vocabulary, genuine_preprocessed, clickbait_preprocessed = preprocess_text(genuine, clickbait)
     open("data/vocabulary.txt", "w").write("\n".join(vocabulary))
     open("data/genuine.preprocessed.txt", "w").write(genuine_preprocessed)

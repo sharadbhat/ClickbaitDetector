@@ -18,5 +18,7 @@ chrome.contextMenus.create(contextMenuItem);
 chrome.contextMenus.onClicked.addListener(function(clickData){
 	if(clickData.menuItemId == "Clickbait"){
 		console.log("Context Selection taken place")
+		console.log("Link Url: "+clickData.linkUrl)
+		console.log("Page Url: "+clickData.pageUrl)
 	}
 });

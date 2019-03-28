@@ -1,7 +1,7 @@
 from model import load_model
 from nltk.corpus import stopwords
 from nltk import download
-download('stopwords')  # Download stopwords list.
+# download('stopwords')  # Download stopwords list.
 
 def preprocess(s1,s2):
     s1 = s1.lower().split()

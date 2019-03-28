@@ -4,10 +4,9 @@ from readability import Document
 import json
 
 from utils.get_news import get_news_from_headlines
-from source.predict import Predictor
+from predict import Predictor
 
 app = Flask(__name__)
-
 
 @app.route("/", methods=["POST"])
 def main_page():

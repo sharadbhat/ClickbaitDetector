@@ -13,10 +13,10 @@ function setup(){
 	createP("Percent: "+random_percent*100)
 
 	if((random_percent*100)<40){
-		createP("It's a Clickbait")
+		createP("It's not Clickbait")
 	}
 	else{
-		createP("It's not a Clickbait")
+		createP("It's a Clickbait")
 	}
 
 }

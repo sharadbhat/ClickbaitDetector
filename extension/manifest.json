@@ -25,12 +25,12 @@
       }
     ],
     "background": {
-      "scripts": ["script_files/cb_background.js"]
+      "scripts": ["script_files/cb_background.js"],
+      "persistent":false
     },
     "permissions": [
       "activeTab", 
-      "tabs", 
-      "webRequest", 
+      "tabs",
       "http://localhost/*",
       "contextMenus"
     ]

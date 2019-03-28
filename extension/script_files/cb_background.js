@@ -20,5 +20,10 @@ chrome.contextMenus.onClicked.addListener(function(clickData){
 		console.log("Context Selection taken place")
 		console.log("Link Url: "+clickData.linkUrl)
 		console.log("Page Url: "+clickData.pageUrl)
+		
+		window.msg= {
+			link_url : clickData.linkUrl,
+			page_url : clickData.pageUrl
+		}
 	}
 });

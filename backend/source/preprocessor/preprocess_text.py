@@ -3,18 +3,13 @@ from collections import Counter
 import nltk
 import re
 
-MATCH_MULTIPLE_SPACES = re.compile(r"\ {2,}")
+MATCH_MULTIPLE_SPACES = re.compile("\ {2,}")
 VOCABULARY_SIZE = 6500
-UNK = "<UNK>" # Placeholder for unknown words
+UNK = "<UNK>"
 PAD = "<PAD>"
 
+
 def clean(text):
-    """
-    To clean text data:
-        - Add space around punctuations.
-        - Add space around numbers.
-        - Reduce multiple spaces to one space.
-    """
     text = str(text.lower())
     for punctuation in string.punctuation:
         text = text.replace(punctuation, " " + punctuation + " ")
@@ -23,16 +18,12 @@ def clean(text):
     text = MATCH_MULTIPLE_SPACES.sub(" ", text)
     return "\n".join(line.strip() for line in text.split("\n"))
 
-def remove_unknown(vocabulary, sentence):
-    """
-    To replace unknown words with <UNK>
-    """
+
+def mark_unknown_words(vocabulary, sentence):
     return " ".join(word if word in vocabulary else UNK for word in sentence.split(" "))
 
-def preprocess_text(genuine, clickbait):
-    """
-    To preprocess genuine and clickbait text.
-    """
+
+def preprocess_text(genuine, clickbait, vocabulary):
     genuine = clean(genuine)
     clickbait = clean(clickbait)
 
@@ -40,16 +31,21 @@ def preprocess_text(genuine, clickbait):
     glove_vocabulary = open("data/vocabulary.glove.txt").read().split("\n")
     counts = Counter(word for word in words if word in glove_vocabulary)
 
-    vocabulary = [PAD, UNK] + [word for word, count in counts.most_common(VOCABULARY_SIZE-2)]
-    genuine = [remove_unknown(vocabulary, sentence)  for sentence in genuine.split("\n")]
-    clickbait = [remove_unknown(vocabulary, sentence) for sentence in clickbait.split("\n")]
+    vocabulary = [PAD, UNK] + [word for word,
+                               count in counts.most_common(VOCABULARY_SIZE-2)]
+    genuine = [mark_unknown_words(vocabulary, sentence) for sentence in tqdm.tqdm(
+        genuine.split("\n"), desc="genuine")]
+    clickbait = [mark_unknown_words(vocabulary, sentence) for sentence in tqdm.tqdm(
+        clickbait.split("\n"), desc="clickbait")]
 
     return (vocabulary, "\n".join(genuine), "\n".join(clickbait))
+
 
 if __name__ == "__main__":
     genuine = open("data/genuine.txt").read()
     clickbait = open("data/clickbait.txt").read()
-    vocabulary, genuine_preprocessed, clickbait_preprocessed = preprocess_text(genuine, clickbait)
+    vocabulary, genuine_preprocessed, clickbait_preprocessed = preprocess_text(
+        genuine, clickbait)
     open("data/vocabulary.txt", "w").write("\n".join(vocabulary))
-    open("data/genuine.preprocessed.txt", "w").write(genuine_preprocessed)
-    open("data/clickbait.preprocessed.txt", "w").write(clickbait_preprocessed)
+    open("data/genuine.preprocessed.txt", "w").write("\n".join(genuine))
+    open("data/clickbait.preprocessed.txt", "w").write("\n".join(clickbait))

@@ -14,3 +14,7 @@ var contextMenuItem = {
 };
 
 chrome.contextMenus.create(contextMenuItem);
+
+chrome.contextMenus.onClicked.addListener(function(selectLink){
+	
+})

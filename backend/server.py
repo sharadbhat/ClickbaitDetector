@@ -4,6 +4,7 @@ from readability import Document
 import json
 
 from utils.get_news import get_news_from_headlines
+from source.predict import Predictor
 
 app = Flask(__name__)
 
@@ -22,25 +23,26 @@ def main_page():
 
     cleaned_page_content = Document(page_content)
     headlines = cleaned_page_content.title()
-    summary = cleaned_page_content.summary()
 
-    run_model(headlines, summary)
+    percentage = run_model(headlines)
 
     response = app.response_class(
-        response=json.dumps("Hello"),
+        response=json.dumps({"url": url, "percentage": percentage}),
         status=200,
         mimetype="application/json"
     )
     return response
 
 
-def run_model(headlines, summary):
+def run_model(headlines):
     """
         - Run trained model on new article.
         - Passes headlines and summary to model.
     """
     # TODO: Call model with headlines.
-    compare_similar_news(headlines)
+    percentage = Predictor.predict(headlines)
+    return percentage
+    # compare_similar_news(headlines)
     pass
 
 def compare_similar_news(headlines):

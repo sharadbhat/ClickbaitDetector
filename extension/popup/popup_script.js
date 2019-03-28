@@ -6,5 +6,6 @@ function setup(){
 	createP(link);*/
 
 	let msg=bgpage.msg;
-	
+	createP("Context Selected Link: "+msg.link_url);
+	createP("Page URL: "+msg.page_url)
 }

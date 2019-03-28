@@ -7,7 +7,7 @@
     "offline_enabled": true,
     "browser_action": {
       "default_icon": {
-        "64": "icons/clickbait_64.png"
+        "16": "icons/clickbait_16.png"
       },
       "default_title": "Clickbait Detector",
       "default_popup": "popup/popup.html"

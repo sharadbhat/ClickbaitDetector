@@ -1,7 +1,6 @@
 console.log("Content Script Loaded")
 
 window.addEventListener("onmouseover",wordSelected(this))
-
 function wordSelected(nodeReference)
 {
     var list = document.querySelectorAll( "a" );

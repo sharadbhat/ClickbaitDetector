@@ -11,8 +11,8 @@
 - Request necessary permissions from user.
 - Gather page URL.
 - Display returned data.
-- Create hover over delay/Clickbait menu option.
-- Using pop-up to display site data.
+- Create hover over delay/Clickbait context menu option.
+- Using pop-up to display site data once the option is clicked.
 
 # Done
 

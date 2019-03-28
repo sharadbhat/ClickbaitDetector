@@ -8,4 +8,8 @@ function setup(){
 	let msg=bgpage.msg;
 	createP("Context Selected Link: "+msg.link_url);
 	createP("Page URL: "+msg.page_url)
+
+	let random_percent = Math.random(0,1);
+	createP("Percent: "+random_percent*100)
+
 }

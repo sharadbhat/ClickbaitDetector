@@ -1,17 +1,17 @@
 import os
 import numpy as np
-import json
+
 from keras.layers import Embedding
-from model.cnn import ConvolutionalNet
 from keras.preprocessing import sequence
 from keras.optimizers import RMSprop, Adam, SGD
 from keras.callbacks import EarlyStopping
 from sklearn.model_selection import train_test_split
 
+from models.cnn import ConvolutionalNet
 
 SEQUENCE_LENGTH = 20
 EMBEDDING_DIMENSION = 30
-WEIGHTS_SAVE_FILE = "models/weights.h5"
+WEIGHTS_SAVE_FILE = "models/detector.h5"
 
 
 def words_to_indices(inverse_vocabulary, words):
@@ -47,15 +47,6 @@ if __name__ == "__main__":
 
     model.compile(loss="binary_crossentropy",
                   optimizer="adam", metrics=["acc"])
-    history = model.fit(X_train, y_train, validation_data=(X_test, y_test), batch_size=32,
-                        nb_epoch=20, shuffle=True)  # , callbacks=[EarlyStopping(monitor="val_loss", patience=2)])
-    # with open("models/accuracy.json", "w") as accuracy_file:
-    #     content = {
-    #         "loss": history.history["loss"],
-    #         "val_loss": history.history["val_loss"],
-    #         "accuracy": history.history["acc"],
-    #         "val_accuracy": history.history["val_acc"]
-    #     }
-    #     accuracy_file.write(json.dumps(content))
-
-model.save_weights(WEIGHTS_SAVE_FILE)
+    model.fit(X_train, y_train, validation_data=(X_test, y_test), batch_size=32,
+              nb_epoch=20, shuffle=True, callbacks=[EarlyStopping(monitor="val_loss", patience=2)])
+    model.save_weights(WEIGHTS_SAVE_FILE)

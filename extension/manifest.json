@@ -4,6 +4,7 @@
     "version": "0.1",
     "author": "Project Group B-7 ISE PESIT-BSC",
     "description": "Calculates probability of an article headline being clickbait.",
+    "offline_enabled": true,
     "browser_action": {
       "default_icon": {
         "64": "icons/clickbait_64.png"

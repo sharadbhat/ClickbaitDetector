@@ -12,6 +12,7 @@ from models.cnn import ConvolutionalNet
 
 # os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
+MATCH_MULTIPLE_SPACES = re.compile("\ {2,}")
 SEQUENCE_LENGTH = 20
 EMBEDDING_DIMENSION = 30
 

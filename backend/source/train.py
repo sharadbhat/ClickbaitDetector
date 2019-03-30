@@ -48,5 +48,5 @@ if __name__ == "__main__":
     model.compile(loss="binary_crossentropy",
                   optimizer="adam", metrics=["acc"])
     model.fit(X_train, y_train, validation_data=(X_test, y_test), batch_size=32,
-              nb_epoch=20, shuffle=True, callbacks=[EarlyStopping(monitor="val_loss", patience=2)])
+              nb_epoch=25, shuffle=True) # , callbacks=[EarlyStopping(monitor="val_loss", patience=2)])
     model.save_weights(WEIGHTS_SAVE_FILE)

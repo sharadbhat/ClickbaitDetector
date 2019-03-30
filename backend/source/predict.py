@@ -44,5 +44,5 @@ class Predictor (object):
 
 predictor = Predictor("models/detector.h5")
 if __name__ == "__main__":
-    print("Clickbait Percentage: {}%".format(
-        round(predictor.predict(sys.argv[1]) * 100, 2)))
+    print(
+        round(predictor.predict(sys.argv[1]) * 100, 2))

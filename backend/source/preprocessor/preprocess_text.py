@@ -1,10 +1,8 @@
 import string
 from collections import Counter
-import tqdm
 import nltk
 import re
 
-MATCH_MULTIPLE_SPACES = re.compile("\ {2,}")
 VOCABULARY_SIZE = 6500
 UNK = "<UNK>"
 PAD = "<PAD>"
@@ -34,10 +32,10 @@ def preprocess_text(genuine, clickbait):
 
     vocabulary = [PAD, UNK] + [word for word,
                                count in counts.most_common(VOCABULARY_SIZE-2)]
-    genuine = [mark_unknown_words(vocabulary, sentence) for sentence in tqdm.tqdm(
-        genuine.split("\n"), desc="genuine")]
-    clickbait = [mark_unknown_words(vocabulary, sentence) for sentence in tqdm.tqdm(
-        clickbait.split("\n"), desc="clickbait")]
+    genuine = [mark_unknown_words(vocabulary, sentence)
+               for sentence in genuine.split("\n")]
+    clickbait = [mark_unknown_words(vocabulary, sentence)
+                 for sentence in clickbait.split("\n")]
 
     return (vocabulary, "\n".join(genuine), "\n".join(clickbait))
 

@@ -1,5 +1,6 @@
 import string
 from collections import Counter
+import tqdm
 import nltk
 import re
 
@@ -23,7 +24,7 @@ def mark_unknown_words(vocabulary, sentence):
     return " ".join(word if word in vocabulary else UNK for word in sentence.split(" "))
 
 
-def preprocess_text(genuine, clickbait, vocabulary):
+def preprocess_text(genuine, clickbait):
     genuine = clean(genuine)
     clickbait = clean(clickbait)
 

@@ -2,11 +2,12 @@ from flask import Flask, request, abort
 import requests
 from readability import Document
 import json
+from subprocess import check_output
 
 from utils.get_news import get_news_from_headlines
-from predict import Predictor
 
 app = Flask(__name__)
+
 
 @app.route("/", methods=["POST"])
 def main_page():
@@ -17,32 +18,33 @@ def main_page():
         - Sends headlines and summary to model.
     """
     url = request.get_json()["url"]
-    
+
     page_content = requests.get(url).text
 
     cleaned_page_content = Document(page_content)
-    headlines = cleaned_page_content.title()
+    headline = cleaned_page_content.title()
 
-    percentage = run_model(headlines)
+    percentage = run_model(headline)
 
     response = app.response_class(
-        response=json.dumps({"url": url, "percentage": percentage}),
+        response=json.dumps({"url": url, "headline": headline, "percentage": percentage}),
         status=200,
         mimetype="application/json"
     )
     return response
 
 
-def run_model(headlines):
+def run_model(headline):
     """
         - Run trained model on new article.
         - Passes headlines and summary to model.
     """
     # TODO: Call model with headlines.
-    percentage = Predictor.predict(headlines)
-    return percentage
+    val = check_output("python source\predict.py \"{}\"".format(headline))
+    return float(val.decode("utf8").replace("\r\n", ""))
     # compare_similar_news(headlines)
     pass
+
 
 def compare_similar_news(headlines):
     """
@@ -53,6 +55,7 @@ def compare_similar_news(headlines):
     similar_articles = get_news_from_headlines(headlines)
     # TODO: Compare articles
     pass
+
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)

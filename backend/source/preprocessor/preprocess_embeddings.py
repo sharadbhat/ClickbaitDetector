@@ -6,7 +6,7 @@ def preprocess_embeddings(embedding_dimension, vocabulary):
 
     embeddings = {}
     with open("models/glove.6B.50d.txt") as glove_file:
-        for line in tqdm.tqdm(glove_file, desc="reading embeddings", total=400000):
+        for line in glove_file:
             start = line.find(" ")
             word = line[:start]
             embeddings[word] = np.fromstring(

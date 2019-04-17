@@ -4,8 +4,12 @@ function setup(){
 	
 	/*let link=bgpage.link;
 	createP(link);*/
-
+	
 	let msg=bgpage.msg;
+
+	// const fs = require('fs');
+	// fs.writeFileSync('../data_files/page_urls.txt',msg);
+
 	createP("Context Selected Link: "+msg.link_url);
 	createP("Page URL: "+msg.page_url)
 

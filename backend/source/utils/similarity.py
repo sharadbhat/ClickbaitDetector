@@ -24,6 +24,7 @@ class Similarity:
         similarities = []
         for i in articles:
             similarities.append(self.get_similarity(headline, i))
+        return similarities
     
     def get_similarity(self, s1, s2):
         return self.similarity_matrix.inner_product(s1, s2, normalized=True)

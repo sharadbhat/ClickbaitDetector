@@ -28,7 +28,8 @@
       "scripts": ["script_files/cb_background.js"],
       "persistent":false
     },
-    "permissions": [
+      "permissions": [
+      "storage",
       "activeTab", 
       "tabs",
       "http://localhost/*",

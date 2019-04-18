@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Clickbait Detector",
-    "version": "0.1",
+    "version": "0.0.0.1",
     "author": "Project Group B-7 ISE PESIT-BSC",
     "description": "Calculates probability of an article headline being clickbait.",
     "offline_enabled": true,
@@ -28,7 +28,8 @@
       "scripts": ["script_files/cb_background.js"],
       "persistent":false
     },
-    "permissions": [
+      "permissions": [
+      "storage",
       "activeTab", 
       "tabs",
       "http://localhost/*",

@@ -4,15 +4,18 @@ function setup(){
 	
 	/*let link=bgpage.link;
 	createP(link);*/
-
+	
 	let msg=bgpage.msg;
+	let percent_data=bgpage.percent_data;
+
+	// const fs = require('fs');
+	// fs.writeFileSync('../data_files/page_urls.txt',msg);
+
 	createP("Context Selected Link: "+msg.link_url);
 	createP("Page URL: "+msg.page_url)
+	createP("Percent: "+ percent_data.cb_percentage);
 
-	let random_percent = Math.random(0,1);
-	createP("Percent: "+random_percent*100)
-
-	if((random_percent*100)<40){
+	if(percent_data.cb_percentage<40){
 		createP("It's not Clickbait")
 	}
 	else{

@@ -1,11 +1,5 @@
-from similarity import get_similarity
+from similarity import Similarity
 
+a = Similarity()
 
-sentence_obama = 'Obama speaks to the media in Illinois'
-sentence_president = 'The president greets the press in Chicago'
-sentence_orange = 'Oranges are my favorite fruit'
-
-
-print(get_similarity(sentence_obama, sentence_president))
-
-print(get_similarity(sentence_obama, sentence_orange))
+a.make_document("Obama speaks to the media in Illinois", ["The president greets the press in Chicago", "Having a tough time finding an orange juice press machine?"])

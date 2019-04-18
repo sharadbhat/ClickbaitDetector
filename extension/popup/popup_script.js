@@ -15,11 +15,11 @@ function setup(){
 	createP("Page URL: "+msg.page_url)
 	createP("Percent: "+ percent_data.cb_percentage);
 
-	// if(cb_percent<40){
-	// 	createP("It's not Clickbait")
-	// }
-	// else{
-	// 	createP("It's a Clickbait")
-	// }
+	if(percent_data.cb_percentage<40){
+		createP("It's not Clickbait")
+	}
+	else{
+		createP("It's a Clickbait")
+	}
 
 }

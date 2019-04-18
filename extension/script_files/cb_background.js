@@ -2,13 +2,10 @@ console.log("Background script loaded")
 
 // chrome.runtime.onMessage.addListener(receiver);
 // function receiver(request,sender,sendResponse){
-<<<<<<< HEAD
 // 	console.log(request.link);
 // 	window.link=request.link;
-=======
 // console.log(request.link);
 // window.link=request.link;
->>>>>>> 7a5bab1595f2579495678f6e66023e4ef4ebdfaf
 // }
 
 var contextMenuItem = {

@@ -13,7 +13,6 @@ function setup(){
 
 	createP("Context Selected Link: "+msg.link_url);
 	createP("Page URL: "+msg.page_url)
-
 	createP("Percent: "+ percent_data.cb_percentage);
 
 	// if(cb_percent<40){

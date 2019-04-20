@@ -35,7 +35,7 @@ chrome.contextMenus.onClicked.addListener(function(clickData){
 
 					window.percent_data= {
 							cb_percentage : clickbait
-							}
+						}
 							console.log("data added")
 				}
 			}

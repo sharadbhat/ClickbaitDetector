@@ -16,6 +16,7 @@ function setup(){
 	
 	var youtube_text=/youtube/
 	var facebook_text=/facebook/
+	var twitter_text=/twitter/
 
 	if((msg.link_url).match(youtube_text))
 	{
@@ -24,6 +25,10 @@ function setup(){
 	else if((msg.link_url).match(facebook_text))
 	{
 		createP("This clickbait detector doesn't support Facebook links!!")
+	}
+	else if((msg.link_url).match(twitter_text))
+	{
+		createP("This clickbait detector doesn't support Twitter links!!")
 	}
 	else
 	{

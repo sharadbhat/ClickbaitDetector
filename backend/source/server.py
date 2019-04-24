@@ -56,12 +56,13 @@ def run_model(headline):
     """
     val = check_output("python source\predict.py \"{}\"".format(headline))
     val = float(val.decode("utf8").replace("\r\n", ""))
-    print(val)
+    print("Percentage: " + str(val))
     if val > 70.0 or val < 30.0:
         return val, None
     else:
         similarity_score = compare_similar_news(headline)
-        similar_articles_found = any([i > 0.4 for i in similarity_score])
+        print(similarity_score)
+        similar_articles_found = [i for i in similarity_score if i > 0.4].count(True) > 1
         return val, similar_articles_found
 
 

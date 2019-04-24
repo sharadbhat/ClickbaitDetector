@@ -33,25 +33,14 @@ chrome.contextMenus.onClicked.addListener(function(clickData) {
       }
     };
 
-    var request_pagelink = new XMLHttpRequest();
-    request_pagelink.onreadystatechange = function() {
-      if (request__pagelink.readyState == 4) {
-        var data = JSON.parse(request__pagelink.responseText);
-        window.clickbait = data.percentage.toString();
-        window.percent_data = {
-          cb_percentage: clickbait
-        };
-      }
-    };
-
-    window.msg = {
-      link_url: clickData.linkUrl,
-      page_url: clickData.pageUrl
-    };
+    // window.msg = {
+    //   link_url: clickData.linkUrl,
+    //   page_url: clickData.pageUrl
+    // };
 
     request_contextlink.open(
       "GET",
-      "http://localhost:5000/?headline=" + clickData.linkUrl,
+      "http://localhost:5000/?url=" + clickData.linkUrl,
       false
     );
     request_contextlink.send();

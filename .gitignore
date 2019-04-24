@@ -1,3 +1,4 @@
 __pycache__
 backend/models/glove.6B.50d.txt
 *.gz
+backend/models/accuracy.json

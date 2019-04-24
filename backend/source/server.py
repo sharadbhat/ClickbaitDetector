@@ -32,13 +32,20 @@ def main_page():
         soup = BeautifulSoup(response.text, "lxml")
         headline = str(soup.title.string)
 
-        percentage = run_model(headline)
+        percentage, similar_found = run_model(headline)
 
-        response = app.response_class(
-            response=json.dumps({"headline": headline, "percentage": percentage}),
-            status=200,
-            mimetype="application/json"
-        )
+        if similar_found == None:
+            response = app.response_class(
+                response=json.dumps({"headline": headline, "percentage": percentage}),
+                status=200,
+                mimetype="application/json"
+            )
+        else:
+            response = app.response_class(
+                response=json.dumps({"headline": headline, "percentage": percentage, "similarArticles": similar_found}),
+                status=200,
+                mimetype="application/json"
+            )
     return response
 
 
@@ -50,12 +57,12 @@ def run_model(headline):
     val = check_output("python source\predict.py \"{}\"".format(headline))
     val = float(val.decode("utf8").replace("\r\n", ""))
     print(val)
-    if val > 60.0 or val < 30.0:
-        return val
+    if val > 70.0 or val < 30.0:
+        return val, None
     else:
         similarity_score = compare_similar_news(headline)
-        print(similarity_score)
-        return val
+        similar_articles_found = any([i > 0.4 for i in similarity_score])
+        return val, similar_articles_found
 
 
 def compare_similar_news(headline):

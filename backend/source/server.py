@@ -1,6 +1,7 @@
 from flask import Flask, request, abort
 import requests
-from readability import Document
+import tldextract
+from bs4 import BeautifulSoup
 import json
 from subprocess import check_output
 
@@ -9,7 +10,7 @@ from utils.similarity import Similarity
 
 app = Flask(__name__)
 
-# @app.route("/", methods=["POST"])
+
 @app.route("/", methods=["GET"])
 def main_page():
     """
@@ -18,22 +19,26 @@ def main_page():
         - Cleans up HTML using Python Readability.
         - Sends headlines and summary to model.
     """
-    headline = request.args.get("headline")
-    # url = request.get_json()["url"]
+    url = request.args.get("url")
 
-    page_content = requests.get(headline).text
+    if 'facebook' in tldextract.extract(url).domain.lower():
+        response = app.response_class(
+            response=json.dumps({"error": "Detector does not handle Facebook links."}),
+            status=200,
+            mimetype="application/json"
+        )
+    else:
+        response = requests.get(url, allow_redirects=True)
+        soup = BeautifulSoup(response.text, "lxml")
+        headline = str(soup.title.string)
 
-    cleaned_page_content = Document(page_content)
-    headline = cleaned_page_content.title()
+        percentage = run_model(headline)
 
-    percentage = run_model(headline)
-
-    response = app.response_class(
-        response=json.dumps({"headline": headline, "percentage": percentage}),
-        # response=json.dumps({"url": url, "headline": headline, "percentage": percentage}),
-        status=200,
-        mimetype="application/json"
-    )
+        response = app.response_class(
+            response=json.dumps({"headline": headline, "percentage": percentage}),
+            status=200,
+            mimetype="application/json"
+        )
     return response
 
 
@@ -51,7 +56,6 @@ def run_model(headline):
         similarity_score = compare_similar_news(headline)
         print(similarity_score)
         return val
-
 
 
 def compare_similar_news(headline):

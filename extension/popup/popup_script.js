@@ -11,7 +11,7 @@ function setup(){
 	// const fs = require('fs');
 	// fs.writeFileSync('../data_files/page_urls.txt',msg);
 
-	createP("Context Selected Link: "+msg.link_url);
+	//createP("Context Selected Link: "+msg.link_url);
 	createP("Page URL: "+msg.page_url)
 	
 	var youtube_text=/youtube/
@@ -32,7 +32,7 @@ function setup(){
 	}
 	else
 	{
-		createP("Percent: "+ percent_data.cb_percentage);
+		createP("Percentage clickbait of the current tab is: "+ percent_data.cb_percentage);
 		if(percent_data.cb_percentage<50){
 			createP("It's not Clickbait")
 		}

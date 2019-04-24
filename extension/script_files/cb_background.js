@@ -1,13 +1,5 @@
 console.log("Background script loaded");
 
-// chrome.runtime.onMessage.addListener(receiver);
-// function receiver(request,sender,sendResponse){
-// 	console.log(request.link);
-// 	window.link=request.link;
-// console.log(request.link);
-// window.link=request.link;
-// }
-
 var contextMenuItem = {
   id: "Clickbait",
   title: "Check if Clickbait or Not",
@@ -22,10 +14,10 @@ chrome.contextMenus.onClicked.addListener(function(clickData) {
     console.log("Link Url: " + clickData.linkUrl);
     console.log("Page Url: " + clickData.pageUrl);
 
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = function() {
-      if (request.readyState == 4) {
-        var data = JSON.parse(request.responseText);
+    var request_contextlink = new XMLHttpRequest();
+    request_contextlink.onreadystatechange = function() {
+      if (request_contextlink.readyState == 4) {
+        var data = JSON.parse(request_contextlink.responseText);
         window.clickbait = data.percentage.toString();
         var alert_data = "Headline: " + data.headline;
 		alert_data += "\nPercentage: " + data.percentage.toString();
@@ -36,30 +28,41 @@ chrome.contextMenus.onClicked.addListener(function(clickData) {
 			alert_data += "\nResult: Clickbait.";
 		}
         alert(alert_data);
-        console.log("XMLHttp Request Perfect");
-        console.log(clickbait);
-
-        window.percent_data = {
-          cb_percentage: clickbait
-        };
-        console.log("data added");
       }
     };
-    // window.percent_data= {
-    // 	click_bait_precentage : data.clickbaitiness
-    // }
+
+
+    var request_pagelink = new XMLHttpRequest();
+    request__pagelink.onreadystatechange = function() {
+      if (request__pagelink.readyState == 4) {
+        var data = JSON.parse(request__pagelink.responseText);
+        window.clickbait = data.percentage.toString();
+          window.percent_data = {
+          cb_percentage: clickbait
+        };
+      }
+    };
+ 
 
     window.msg = {
       link_url: clickData.linkUrl,
       page_url: clickData.pageUrl
     };
 
-    request.open(
+    
+    request_contextlink.open(
       "GET",
       "http://localhost:5000/?headline=" + clickData.linkUrl,
       false
     );
-    request.send();
+    request_contextlink.send();
+
+    request_pagelink.open(
+      "GET",
+      "http://localhost:5000/?headline=" + clickData.pageUrl,
+      false
+    );
+    request_pagelink.send();
 
     // chrome.storage.local.set({'link_url':clickData.link_url});
   }

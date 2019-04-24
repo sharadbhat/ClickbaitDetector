@@ -33,7 +33,7 @@ function setup(){
 	else
 	{
 		createP("Percent: "+ percent_data.cb_percentage);
-		if(percent_data.cb_percentage<40){
+		if(percent_data.cb_percentage<50){
 			createP("It's not Clickbait")
 		}
 		else{

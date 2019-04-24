@@ -12,7 +12,8 @@ function setup(){
 	// fs.writeFileSync('../data_files/page_urls.txt',msg);
 
 	//createP("Context Selected Link: "+msg.link_url);
-	createP("Page URL: "+msg.page_url)
+	// createP("Page URL: "+msg.page_url)
+	createP("Right click on any article link to check.");
 	
 	var youtube_text=/youtube/
 	var facebook_text=/facebook/

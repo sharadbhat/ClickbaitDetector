@@ -19,33 +19,29 @@ def main_page():
         - Cleans up HTML using Python Readability.
         - Sends headlines and summary to model.
     """
-    url = request.args.get("url")
+    url = request.args.get("url", None)
+    headline = request.args.get("headline", None)
 
-    if 'facebook' in tldextract.extract(url).domain.lower():
+    if headline == None:
+        if 'facebook' not in tldextract.extract(url).domain.lower():
+            request_response = requests.get(url, allow_redirects=True)
+            soup = BeautifulSoup(request_response.text, "lxml")
+            headline = str(soup.title.string)
+
+    percentage, similar_found = run_model(headline)
+
+    if similar_found == None:
         response = app.response_class(
-            response=json.dumps({"error": "Detector does not handle Facebook links."}),
+            response=json.dumps({"headline": headline, "percentage": percentage}),
             status=200,
             mimetype="application/json"
         )
     else:
-        response = requests.get(url, allow_redirects=True)
-        soup = BeautifulSoup(response.text, "lxml")
-        headline = str(soup.title.string)
-
-        percentage, similar_found = run_model(headline)
-
-        if similar_found == None:
-            response = app.response_class(
-                response=json.dumps({"headline": headline, "percentage": percentage}),
-                status=200,
-                mimetype="application/json"
-            )
-        else:
-            response = app.response_class(
-                response=json.dumps({"headline": headline, "percentage": percentage, "similarArticles": similar_found}),
-                status=200,
-                mimetype="application/json"
-            )
+        response = app.response_class(
+            response=json.dumps({"headline": headline, "percentage": percentage, "similarArticles": similar_found}),
+            status=200,
+            mimetype="application/json"
+        )
     return response
 
 

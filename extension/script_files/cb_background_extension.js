@@ -1,13 +1,5 @@
 // console.log("Background script loaded")
 
-// // chrome.runtime.onMessage.addListener(receiver);
-// // function receiver(request,sender,sendResponse){
-// // 	console.log(request.link);
-// // 	window.link=request.link;
-// // console.log(request.link);
-// // window.link=request.link;
-// // }
-
 // var contextMenuItem = {
 
 // 	"id": "Clickbait",
@@ -51,16 +43,18 @@
 // 					window.clickbait=data.clickbaitiness.toString();
 // 					console.log("XMLHttp Request Perfect");
 // 					console.log(clickbait)
-
+// 					var alert_text = ""
+// 					alert_text = clickData.linkUrl
+// 					alert_text += "\nClickbait Percentage: " + clickbait
+// 					alert_text += "\nStatus: "
 // 					if(clickbait>50)
 // 					{
-// 						alert(clickData.linkUrl+"Percentage"+clickbait+", and is a clickbait")
+// 						alert_text += "Is a clickbait"
 // 					}
 // 					else{
-// 						alert(clickData.linkUrl+"Percentage"+clickbait+", is not a clickbait")
+// 						alert_text += "Is not a clickbait"
 // 					}
-
-// 							console.log("data added")
+// 					alert(alert_text)
 // 				}
 // 			}
 // 		};
@@ -71,10 +65,10 @@
 // 		}
 
 // 		request_pagelink.open("GET", "https://clickbait-detector.herokuapp.com/detect?headline=" + clickData.pageUrl, true);
-// 		// request_pagelink.send();
+// 		request_pagelink.send();
 
 // 		request_urllink.open("GET", "https://clickbait-detector.herokuapp.com/detect?headline=" + clickData.linkUrl, true);
-// 		// request_urllink.send();
+// 		request_urllink.send();
 
 
 // 	}

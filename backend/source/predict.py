@@ -8,9 +8,10 @@ from preprocessor.preprocess_text import clean
 
 from models.cnn import ConvolutionalNet
 
-# import os
+import os
 
 # os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
 
 MATCH_MULTIPLE_SPACES = re.compile("\ {2,}")
 SEQUENCE_LENGTH = 20
@@ -39,10 +40,15 @@ class Predictor (object):
         inputs = sequence.pad_sequences([words_to_indices(
             inverse_vocabulary, clean(headline).lower().split())], maxlen=SEQUENCE_LENGTH)
         clickbait_value = self.model.predict(inputs)[0, 0]
-        return clickbait_value
+        return round(clickbait_value * 100, 2)
 
 
 predictor = Predictor("models/detector.h5")
-if __name__ == "__main__":
-    print(
-        round(predictor.predict(sys.argv[1]) * 100, 2))
+predictor.predict("hello")
+# if __name__ == "__main__":
+#     print(
+#         round(predictor.predict(sys.argv[1]) * 100, 2))
+#     print(
+#         round(predictor.predict(sys.argv[1]) * 100, 2))
+#     print(
+#         round(predictor.predict(sys.argv[1]) * 100, 2))

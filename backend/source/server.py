@@ -4,7 +4,7 @@ import tldextract
 from bs4 import BeautifulSoup
 import json
 from subprocess import check_output
-
+from predict import predictor
 from utils.get_news import get_news_from_headlines
 from utils.similarity import Similarity
 
@@ -50,8 +50,9 @@ def run_model(headline):
         - Run trained model on new article.
         - Passes headlines and summary to model.
     """
-    val = check_output("python source\predict.py \"{}\"".format(headline))
-    val = float(val.decode("utf8").replace("\r\n", ""))
+    # val = check_output("python source\predict.py \"{}\"".format(headline))
+    # val = float(val.decode("utf8").replace("\r\n", ""))
+    val = predictor.predict(headline)
     print("Percentage: " + str(val))
     if val > 70.0 or val < 30.0:
         return val, None
